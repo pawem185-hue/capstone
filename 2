@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StartSwift</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4da3ff, #dcecff);
+      color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      background: #1575ea;
+      color: white;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="app">
+  <h1>StartSwift</h1>
+  <p>Select where you are:</p>
+  <button onclick="start('ready')">I have a business plan</button>
+  <button onclick="start('rough')">I have a rough idea</button>
+  <button onclick="start('none')">I have no idea</button>
+</div>
+
+<script>
+let state = {};
+
+function start(type) {
+  state.start = type;
+  if(type !== 'ready') {
+    document.getElementById('app').innerHTML = `
+      <h2>Business Plan Builder</h2>
+      <input id="idea" placeholder="What is your idea?"/>
+      <button onclick="nextStep()">Continue</button>
+    `;
+  } else {
+    nextStep();
+  }
+}
+
+function nextStep() {
+  document.getElementById('app').innerHTML = `
+    <h2>Choose Business Type</h2>
+    <button onclick="ein()">LLC</button>
+    <button onclick="ein()">Sole Proprietor</button>
+  `;
+}
+
+function ein() {
+  document.getElementById('app').innerHTML = `
+    <h2>Get EIN</h2>
+    <p>Apply on IRS website</p>
+    <button onclick="afterEin()">Done</button>
+  `;
+}
+
+function afterEin() {
+  document.getElementById('app').innerHTML = `
+    <h2>Next Steps</h2>
+    <ul style="text-align:left">
+      <li>Open bank account</li>
+      <li>Set up bookkeeping</li>
+      <li>Prepare taxes</li>
+      <li>Get licenses</li>
+      <li>Insurance</li>
+      <li>Build website</li>
+      <li>Set up payments</li>
+      <li>Get customers</li>
+    </ul>
+    <p>You’re launched 🚀</p>
+  `;
+}
+</script>
+
+</body>
+</html>
